@@ -1,7 +1,9 @@
 package com.example.SpringDataJpa.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -27,6 +29,8 @@ import java.time.LocalDateTime;
                 )
         }
 )
+@AllArgsConstructor
+@NoArgsConstructor
 public class Product {
 
     // strategy = GenerationType.AUTO : The GenerationType.AUTO is the default generation
