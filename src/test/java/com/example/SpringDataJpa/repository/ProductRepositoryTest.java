@@ -70,8 +70,31 @@ class ProductRepositoryTest {
         // then - verify the output
         System.out.println(updatedProduct);
         System.out.println(updatedProduct.getId());
+        Assertions.assertThat(updatedProduct).isNotNull();
         Assertions.assertThat(updatedProduct.getName()).isEqualTo(product.getName());
         Assertions.assertThat(updatedProduct.getDescription()).isEqualTo(product.getDescription());
+
+    }
+
+    // JUnit test for find product by id
+    @Test
+    @DisplayName("JUnit test for find product by id")
+    public void givenProductId_whenFindById_thenReturnProductObject() {
+
+        // given - precondition or setup
+        Long id = 1L;
+
+        // when - action or the behavior that we are going test
+        Product product = null;
+        if(productRepository.findById(id).isPresent()){
+            product = productRepository.findById(id).get();
+        }
+
+        // then - verify the output
+        System.out.println(product);
+        System.out.println(Objects.requireNonNull(product).getId());
+        Assertions.assertThat(product).isNotNull();
+        Assertions.assertThat(product.getName()).isEqualTo("updated product 1");
 
     }
 
