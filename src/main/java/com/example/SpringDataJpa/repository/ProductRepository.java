@@ -19,6 +19,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     Product findByName(String name);
     List<Product> findByNameOrDescription(String name, String description);
     List<Product> findByNameAndDescription(String name, String description);
+    Product findDistinctByName(String name);
 
     // save() :
     // This method is accessible through the CrudRepository interface. When you save an entity using the save() method,

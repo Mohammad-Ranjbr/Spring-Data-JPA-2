@@ -74,5 +74,22 @@ public class QueryMethodsTest {
         Assertions.assertThat(products.size()).isEqualTo(1);
 
     }
+    // JUnit test for find Distinct By Name
+    @Test
+    @DisplayName("JUnit test for find Distinct By Name")
+    public void givenProductName_whenFindDistinctByName_thenReturnProductObject() {
+
+        // given - precondition or setup
+        String name = "product 1";
+
+        // when - action or the behavior that we are going test
+        Product product = productRepository.findDistinctByName(name);
+
+        // then - verify the output
+        System.out.println(product);
+        Assertions.assertThat(product).isNotNull();
+        Assertions.assertThat(product.getName()).isEqualTo("product 1");
+
+    }
 
 }
