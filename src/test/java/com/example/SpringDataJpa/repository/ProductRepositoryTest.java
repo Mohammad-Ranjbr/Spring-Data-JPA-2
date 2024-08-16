@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @SpringBootTest
 class ProductRepositoryTest {
@@ -145,6 +146,44 @@ class ProductRepositoryTest {
         productList.forEach((p) -> System.out.println(p.getName()));
         Assertions.assertThat(productList).isNotNull();
         Assertions.assertThat(productList.size()).isEqualTo(3);
+
+    }
+
+    // JUnit test for delete by id
+    @Test
+    @DisplayName("JUnit test for delete by id")
+    public void givenProductId_whenDeleteById_thenDeleted() {
+
+        // given - precondition or setup
+        Long id = 1L;
+
+        // when - action or the behavior that we are going test
+        productRepository.deleteById(id);
+        Optional<Product> product = productRepository.findById(id);
+
+        // then - verify the output
+        Assertions.assertThat(product).isEmpty();
+
+    }
+
+    // JUnit test for delete method
+    @Test
+    @DisplayName("JUnit test for delete method")
+    public void givenProductObject_whenDelete_thenDeleted() {
+
+        // given - precondition or setup
+        Long id = 4L;
+        Product product =null;
+        if(productRepository.findById(id).isPresent()){
+            product = productRepository.findById(id).get();
+        }
+
+        // when - action or the behavior that we are going test
+        productRepository.delete(Objects.requireNonNull(product));
+        Optional<Product> getProduct = productRepository.findById(id);
+
+        // then - verify the output
+        Assertions.assertThat(getProduct).isEmpty();
 
     }
 
