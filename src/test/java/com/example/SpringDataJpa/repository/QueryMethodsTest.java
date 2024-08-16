@@ -129,4 +129,22 @@ public class QueryMethodsTest {
 
     }
 
+    // JUnit test for find By Name Containing
+    @Test
+    @DisplayName("JUnit test for find By Name Containing")
+    public void givenProductName_whenFindByNameContaining_thenReturnProductList() {
+
+        // given - precondition or setup
+        String name = "product";
+
+        // when - action or the behavior that we are going test
+        List<Product> products = productRepository.findByNameContaining(name);
+
+        // then - verify the output
+        System.out.println(products);
+        Assertions.assertThat(products).isNotNull();
+        Assertions.assertThat(products.size()).isEqualTo(3);
+
+    }
+
 }
