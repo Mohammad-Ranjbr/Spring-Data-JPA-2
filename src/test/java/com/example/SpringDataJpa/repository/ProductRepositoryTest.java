@@ -187,4 +187,20 @@ class ProductRepositoryTest {
 
     }
 
+    // JUnit test for
+    @Test
+    @DisplayName("")
+    public void given_whenDeleteAll_thenDeletedAllProduct() {
+
+        // given - precondition or setup
+
+        // when - action or the behavior that we are going test
+        productRepository.deleteAll();
+        Long rowCount = productRepository.count();
+
+        // then - verify the output
+        Assertions.assertThat(rowCount).isEqualTo(0);
+
+    }
+
 }
