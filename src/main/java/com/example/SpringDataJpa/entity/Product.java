@@ -1,10 +1,7 @@
 package com.example.SpringDataJpa.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -19,6 +16,8 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Entity
+@Builder
+@ToString
 @Table(
         name = "products",
         schema = "public",
@@ -62,12 +61,13 @@ public class Product {
     // the use of pessimistic locks which put all transactions into a sequential order.
     // This slows down your application, and you should, therefore, prefer
     // the GenerationType.SEQUENCE, if your database supports sequences, which most popular databases do.
+    // @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_generator")
+    // @SequenceGenerator(name = "product_generator",
+    //         sequenceName = "product_sequence_name",
+    //         allocationSize = 1)
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_generator")
-    @SequenceGenerator(name = "product_generator",
-            sequenceName = "product_sequence_name",
-            allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "stock_keeping_unit", nullable = false)
