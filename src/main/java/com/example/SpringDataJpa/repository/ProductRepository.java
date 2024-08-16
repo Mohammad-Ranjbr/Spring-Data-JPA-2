@@ -4,6 +4,8 @@ import com.example.SpringDataJpa.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 // All the methods of this interface are implemented in SimpleJpaRepository and all of them are transactional.
 // There is no need to put this annotation for these methods. Also, there is no need
 // to put @Repository annotation because SimpleJpaRepository is marked with this annotation.
@@ -15,6 +17,8 @@ import org.springframework.stereotype.Repository;
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
     Product findByName(String name);
+    List<Product> findByNameOrDescription(String name, String description);
+    List<Product> findByNameAndDescription(String name, String description);
 
     // save() :
     // This method is accessible through the CrudRepository interface. When you save an entity using the save() method,

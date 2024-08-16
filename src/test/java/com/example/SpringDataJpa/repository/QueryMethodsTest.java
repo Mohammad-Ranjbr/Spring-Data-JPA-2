@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+
 @SpringBootTest
 public class QueryMethodsTest {
 
@@ -32,6 +34,44 @@ public class QueryMethodsTest {
         System.out.println(product);
         Assertions.assertThat(product).isNotNull();
         Assertions.assertThat(product.getName()).isEqualTo("product 1");
+
+    }
+
+    // JUnit test for find By Name Or Description
+    @Test
+    @DisplayName("JUnit test for find By Name Or Description")
+    public void givenProductNameAndDescription_whenFindByNameOrDescription_thenProductList() {
+
+        // given - precondition or setup
+        String name = "product 1";
+        String description = "product 2 description";
+
+        // when - action or the behavior that we are going test
+        List<Product> products = productRepository.findByNameOrDescription(name,description);
+
+        // then - verify the output
+        products.forEach(System.out::println);
+        Assertions.assertThat(products).isNotNull();
+        Assertions.assertThat(products.size()).isEqualTo(2);
+
+    }
+
+    // JUnit test for find By Name And Description
+    @Test
+    @DisplayName("JUnit test for find By Name Or Description")
+    public void givenProductNameAndDescription_whenFindByNameAndDescription_thenProductList() {
+
+        // given - precondition or setup
+        String name = "product 1";
+        String description = "product 1 description";
+
+        // when - action or the behavior that we are going test
+        List<Product> products = productRepository.findByNameAndDescription(name,description);
+
+        // then - verify the output
+        products.forEach(System.out::println);
+        Assertions.assertThat(products).isNotNull();
+        Assertions.assertThat(products.size()).isEqualTo(1);
 
     }
 
