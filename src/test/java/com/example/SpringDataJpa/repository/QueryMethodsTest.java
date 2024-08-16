@@ -111,4 +111,22 @@ public class QueryMethodsTest {
 
     }
 
+    // JUnit test for findBy Price Less Than
+    @Test
+    @DisplayName("JUnit test for findBy Price Less Than")
+    public void givenProductPrice_whenFindByPriceLessThan_thenReturnProductList() {
+
+        // given - precondition or setup
+        BigDecimal price = new BigDecimal(120);
+
+        // when - action or the behavior that we are going test
+        List<Product> products = productRepository.findByPriceLessThan(price);
+
+        // then - verify the output
+        System.out.println(products);
+        Assertions.assertThat(products).isNotNull();
+        Assertions.assertThat(products.size()).isEqualTo(2);
+
+    }
+
 }
