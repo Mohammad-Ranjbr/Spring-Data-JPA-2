@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @SpringBootTest
@@ -89,6 +90,24 @@ public class QueryMethodsTest {
         System.out.println(product);
         Assertions.assertThat(product).isNotNull();
         Assertions.assertThat(product.getName()).isEqualTo("product 1");
+
+    }
+
+    // JUnit test for findBy Price Greater Than
+    @Test
+    @DisplayName("JUnit test for findBy Price Greater Than")
+    public void givenProductPrice_whenFindByPriceGreaterThan_thenReturnProductList() {
+
+        // given - precondition or setup
+        BigDecimal price = new BigDecimal(100);
+
+        // when - action or the behavior that we are going test
+        List<Product> products = productRepository.findByPriceGreaterThan(price);
+
+        // then - verify the output
+        System.out.println(products);
+        Assertions.assertThat(products).isNotNull();
+        Assertions.assertThat(products.size()).isEqualTo(2);
 
     }
 

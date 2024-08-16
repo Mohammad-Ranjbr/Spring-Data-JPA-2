@@ -4,6 +4,7 @@ import com.example.SpringDataJpa.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 // All the methods of this interface are implemented in SimpleJpaRepository and all of them are transactional.
@@ -20,6 +21,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findByNameOrDescription(String name, String description);
     List<Product> findByNameAndDescription(String name, String description);
     Product findDistinctByName(String name);
+    List<Product> findByPriceGreaterThan(BigDecimal price);
 
     // save() :
     // This method is accessible through the CrudRepository interface. When you save an entity using the save() method,
