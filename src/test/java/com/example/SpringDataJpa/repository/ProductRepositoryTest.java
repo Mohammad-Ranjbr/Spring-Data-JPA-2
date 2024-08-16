@@ -187,9 +187,9 @@ class ProductRepositoryTest {
 
     }
 
-    // JUnit test for
+    // JUnit test for delete all method
     @Test
-    @DisplayName("")
+    @DisplayName("JUnit test for delete all method")
     public void given_whenDeleteAll_thenDeletedAllProduct() {
 
         // given - precondition or setup
@@ -200,6 +200,39 @@ class ProductRepositoryTest {
 
         // then - verify the output
         Assertions.assertThat(rowCount).isEqualTo(0);
+
+    }
+
+    // JUnit test for count method
+    @Test
+    @DisplayName("JUnit test for count method")
+    public void givenProductList_whenCount_thenReturnRecordCount() {
+
+        // given - precondition or setup
+        Product product1 = Product.builder()
+                .name("product 2")
+                .description("product 2 description")
+                .sku("110ABC")
+                .price(new BigDecimal(110))
+                .active(true)
+                .imageUrl("product2.png")
+                .build();
+        Product product2 = Product.builder()
+                .name("product 3")
+                .description("product 3 description")
+                .sku("120ABC")
+                .price(new BigDecimal(120))
+                .active(true)
+                .imageUrl("product3.png")
+                .build();
+        List<Product> products = List.of(product1,product2);
+        productRepository.saveAll(products);
+
+        // when - action or the behavior that we are going test
+        Long rowCount = productRepository.count();
+
+        // then - verify the output
+        Assertions.assertThat(rowCount).isEqualTo(2);
 
     }
 
