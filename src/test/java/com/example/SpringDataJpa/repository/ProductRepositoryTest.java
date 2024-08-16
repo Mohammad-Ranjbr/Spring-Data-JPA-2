@@ -236,4 +236,20 @@ class ProductRepositoryTest {
 
     }
 
+    // JUnit test for exists by id method
+    @Test
+    @DisplayName("JUnit test for exists by id method")
+    public void givenProductId_whenExistsById_thenReturnTrue() {
+
+        // given - precondition or setup
+        Long id = 7L;
+
+        // when - action or the behavior that we are going test
+        boolean result = productRepository.existsById(id);
+
+        // then - verify the output
+        Assertions.assertThat(result).isEqualTo(true);
+
+    }
+
 }
