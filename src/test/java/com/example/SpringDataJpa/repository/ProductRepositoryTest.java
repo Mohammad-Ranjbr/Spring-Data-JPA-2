@@ -131,4 +131,21 @@ class ProductRepositoryTest {
 
     }
 
+    // JUnit test for findAll method
+    @Test
+    @DisplayName("JUnit test for findAll method")
+    public void given_whenFindAll_thenReturnProductList() {
+
+        // given - precondition or setup
+
+        // when - action or the behavior that we are going test
+        List<Product> productList = productRepository.findAll();
+
+        // then - verify the output
+        productList.forEach((p) -> System.out.println(p.getName()));
+        Assertions.assertThat(productList).isNotNull();
+        Assertions.assertThat(productList.size()).isEqualTo(3);
+
+    }
+
 }
