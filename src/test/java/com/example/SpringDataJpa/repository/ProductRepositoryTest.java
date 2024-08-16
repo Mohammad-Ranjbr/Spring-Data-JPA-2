@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Objects;
 
 @SpringBootTest
@@ -95,6 +96,38 @@ class ProductRepositoryTest {
         System.out.println(Objects.requireNonNull(product).getId());
         Assertions.assertThat(product).isNotNull();
         Assertions.assertThat(product.getName()).isEqualTo("updated product 1");
+
+    }
+
+    // JUnit test for save all method
+    @Test
+    @DisplayName("JUnit test for save all method")
+    public void givenProductList_whenSaveAll_thenReturnProductList() {
+
+        // given - precondition or setup
+        Product product1 = Product.builder()
+                .name("product 2")
+                .description("product 2 description")
+                .sku("110ABC")
+                .price(new BigDecimal(110))
+                .active(true)
+                .imageUrl("product2.png")
+                .build();
+        Product product2 = Product.builder()
+                .name("product 3")
+                .description("product 3 description")
+                .sku("120ABC")
+                .price(new BigDecimal(120))
+                .active(true)
+                .imageUrl("product3.png")
+                .build();
+        List<Product> products = List.of(product1,product2);
+
+        // when - action or the behavior that we are going test
+        productRepository.saveAll(products);
+
+        // then - verify the output
+        Assertions.assertThat(productRepository.count()).isEqualTo(3);
 
     }
 
