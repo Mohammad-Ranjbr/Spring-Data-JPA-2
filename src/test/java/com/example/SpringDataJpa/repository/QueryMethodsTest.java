@@ -222,4 +222,38 @@ public class QueryMethodsTest {
 
     }
 
+    // JUnit test for find First 2 By Order By Name Asc
+    @Test
+    @DisplayName("JUnit test for find First 2 By Order By Name Asc")
+    public void given_whenFindFirst2ByOrderByNameAsc_thenReturnProductList() {
+
+        // given - precondition or setup
+
+        // when - action or the behavior that we are going test
+        List<Product> products = productRepository.findFirst2ByOrderByNameAsc();
+
+        // then - verify the output
+        System.out.println(products);
+        Assertions.assertThat(products).isNotNull();
+        Assertions.assertThat(products.size()).isEqualTo(2);
+
+    }
+
+    // JUnit test for find Top 3 By Order By Price Desc
+    @Test
+    @DisplayName("JUnit test for find Top 3 By Order By Price Desc")
+    public void given_whenFindTop3ByOrderByPriceDesc_then() {
+
+        // given - precondition or setup
+
+        // when - action or the behavior that we are going test
+        List<Product> products = productRepository.findTop3ByOrderByPriceDesc();
+
+        // then - verify the output
+        System.out.println(products);
+        Assertions.assertThat(products).isNotNull();
+        Assertions.assertThat(products.size()).isEqualTo(3);
+
+    }
+
 }

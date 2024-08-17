@@ -29,7 +29,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findByPriceBetween(BigDecimal startPrice, BigDecimal endPrice);
     List<Product> findByDateCreatedBetween(LocalDateTime startDate, LocalDateTime endDate);
     List<Product> findByNameIn(List<String> names);
-
+    List<Product> findFirst2ByOrderByNameAsc();
+    List<Product> findTop3ByOrderByPriceDesc();
 
     // save() :
     // This method is accessible through the CrudRepository interface. When you save an entity using the save() method,
