@@ -54,4 +54,22 @@ public class NamedQueriesTest {
 
     }
 
+    // JUnit test for find By Description
+    @Test
+    @DisplayName("")
+    public void givenProductDescription_whenFindByDescription_thenReturnProductObject() {
+
+        // given - precondition or setup
+        String description = "product 1 description";
+
+        // when - action or the behavior that we are going test
+        Product product = productRepository.findByDescription(description);
+
+        // then - verify the output
+        System.out.println(product);
+        Assertions.assertThat(product).isNotNull();
+        Assertions.assertThat(product.getDescription()).isEqualTo("product 1 description");
+
+    }
+
 }

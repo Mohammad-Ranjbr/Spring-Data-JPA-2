@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 // By using name, you can assign a unique name to the adverb. This name can be useful in error messages, logs, or for database management operations.
 
 //@NamedQuery(
-//        name = "Product.findByPrice", // EntityName.MethodName
+//        name = "Product.findByPrice", // Convention: EntityName.MethodName
 //        query = "select p from Product p where p.price =:price"
 //)
 
@@ -29,6 +29,12 @@ import java.time.LocalDateTime;
                         query = "select p from Product p where p.price =:price"
                 )
         }
+)
+
+@NamedNativeQuery(
+        name = "Product.findByDescription",
+        query = "select * from products p where p.description =:description",
+        resultClass = Product.class
 )
 
 @Getter
