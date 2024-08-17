@@ -2,6 +2,7 @@ package com.example.SpringDataJpa.repository;
 
 import com.example.SpringDataJpa.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
@@ -31,6 +32,15 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findByNameIn(List<String> names);
     List<Product> findFirst2ByOrderByNameAsc();
     List<Product> findTop3ByOrderByPriceDesc();
+
+    // JPQL stands for the Java Persistence Query Language. It is de ned in the JPA specification
+    // and is an object-oriented query language used to perform database operations on persistent entities.
+    // Hibernate, or any other JPA implementation, has to transform the JPQL query into SQL. The syntax
+    // of a JPQL FROM clause is similar to SQL but uses the entity model instead of table or column names.
+    // It can be used with any type of relation database.
+
+    @Query("select p from Product p where p.name = ?1 or p.description = ?2")
+    List<Product> findByNameOrDescriptionJPQLIndexParam(String name, String description);
 
     // save() :
     // This method is accessible through the CrudRepository interface. When you save an entity using the save() method,
