@@ -13,12 +13,12 @@ import java.time.LocalDateTime;
 // This constraint ensures that the values in the specified column or columns are unique at the table level and duplicate data is not entered in these columns.
 // By using name, you can assign a unique name to the adverb. This name can be useful in error messages, logs, or for database management operations.
 
-//@NamedQuery(
+//@NamedQuery( Hibernate's suggestion is to use the jpa package
 //        name = "Product.findByPrice", // Convention: EntityName.MethodName
 //        query = "select p from Product p where p.price =:price"
 //)
 
-@NamedQueries(
+@NamedQueries( // Hibernate's suggestion is to use the jpa package
         {
                 @NamedQuery(
                         name = "Product.findAllOrderByNameDesc",
@@ -31,10 +31,25 @@ import java.time.LocalDateTime;
         }
 )
 
-@NamedNativeQuery(
-        name = "Product.findByDescription",
-        query = "select * from products p where p.description =:description",
-        resultClass = Product.class
+//@NamedNativeQuery( Hibernate's suggestion is to use the jpa package
+//        name = "Product.findByDescription",
+//        query = "select * from products p where p.description =:description",
+//        resultClass = Product.class
+//)
+
+@NamedNativeQueries( // Hibernate's suggestion is to use the jpa package
+        {
+                @NamedNativeQuery(
+                        name = "Product.findByDescription",
+                        query = "select * from products p where p.description =:description",
+                        resultClass = Product.class
+                ),
+                @NamedNativeQuery(
+                        name = "Product.findAllOrderByAsc",
+                        query = "select * from products order by name asc",
+                        resultClass = Product.class
+                )
+        }
 )
 
 @Getter

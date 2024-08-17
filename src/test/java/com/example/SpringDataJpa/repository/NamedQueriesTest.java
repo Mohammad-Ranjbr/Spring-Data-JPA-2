@@ -56,7 +56,7 @@ public class NamedQueriesTest {
 
     // JUnit test for find By Description
     @Test
-    @DisplayName("")
+    @DisplayName("JUnit test for find By Description")
     public void givenProductDescription_whenFindByDescription_thenReturnProductObject() {
 
         // given - precondition or setup
@@ -69,6 +69,23 @@ public class NamedQueriesTest {
         System.out.println(product);
         Assertions.assertThat(product).isNotNull();
         Assertions.assertThat(product.getDescription()).isEqualTo("product 1 description");
+
+    }
+
+    // JUnit test for find All Order By Asc
+    @Test
+    @DisplayName("JUnit test for find All Order By Asc")
+    public void givenProductDescription_whenFindAllOrderByAsc_thenReturnProductObject() {
+
+        // given - precondition or setup
+
+        // when - action or the behavior that we are going test
+        List<Product> products = productRepository.findAllOrderByAsc();
+
+        // then - verify the output
+        products.forEach(System.out::println);
+        Assertions.assertThat(products).isNotNull();
+        Assertions.assertThat(products.size()).isEqualTo(3);
 
     }
 
