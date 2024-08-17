@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @SpringBootTest
@@ -176,6 +177,25 @@ public class QueryMethodsTest {
 
         // when - action or the behavior that we are going test
         List<Product> products = productRepository.findByPriceBetween(startPrice,endPrice); // between -> ? =< price =< ?
+
+        // then - verify the output
+        System.out.println(products);
+        Assertions.assertThat(products).isNotNull();
+        Assertions.assertThat(products.size()).isEqualTo(3);
+
+    }
+
+    // JUnit test for find By DateCreated Between
+    @Test
+    @DisplayName("JUnit test for find By DateCreated Between")
+    public void givenDateCreatedRange_whenFindByDateCreatedBetween_thenReturnProductList() {
+
+        // given - precondition or setup
+        LocalDateTime startDate = LocalDateTime.of(2024,8,17,10,0,7);
+        LocalDateTime endDate = LocalDateTime.of(2024,8,17,10,0,14);
+
+        // when - action or the behavior that we are going test
+        List<Product> products = productRepository.findByDateCreatedBetween(startDate,endDate);
 
         // then - verify the output
         System.out.println(products);

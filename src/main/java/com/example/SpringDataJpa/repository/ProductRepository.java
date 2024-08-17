@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 
 // All the methods of this interface are implemented in SimpleJpaRepository and all of them are transactional.
@@ -26,6 +27,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findByNameContaining(String name);
     List<Product> findByNameLike(String name);
     List<Product> findByPriceBetween(BigDecimal startPrice, BigDecimal endPrice);
+    List<Product> findByDateCreatedBetween(LocalDateTime startDate, LocalDateTime endDate);
+
 
     // save() :
     // This method is accessible through the CrudRepository interface. When you save an entity using the save() method,
