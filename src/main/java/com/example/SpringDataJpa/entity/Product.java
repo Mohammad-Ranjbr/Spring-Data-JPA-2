@@ -13,9 +13,22 @@ import java.time.LocalDateTime;
 // This constraint ensures that the values in the specified column or columns are unique at the table level and duplicate data is not entered in these columns.
 // By using name, you can assign a unique name to the adverb. This name can be useful in error messages, logs, or for database management operations.
 
-@NamedQuery(
-        name = "Product.findByPrice", // EntityName.MethodName
-        query = "select p from Product p where p.price =:price"
+//@NamedQuery(
+//        name = "Product.findByPrice", // EntityName.MethodName
+//        query = "select p from Product p where p.price =:price"
+//)
+
+@NamedQueries(
+        {
+                @NamedQuery(
+                        name = "Product.findAllOrderByNameDesc",
+                        query = "select p from Product p order by p.name desc"
+                ),
+                @NamedQuery(
+                        name = "Product.findByPrice",
+                        query = "select p from Product p where p.price =:price"
+                )
+        }
 )
 
 @Getter

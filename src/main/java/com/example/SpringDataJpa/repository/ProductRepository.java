@@ -53,6 +53,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findByNameOrDescriptionSQLNamedParam(@Param("name") String name, @Param("description") String description);
 
     Product findByPrice(@Param("price") BigDecimal price);
+    List<Product> findAllOrderByNameDesc();
 
     // save() :
     // This method is accessible through the CrudRepository interface. When you save an entity using the save() method,

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @SpringBootTest
 public class NamedQueriesTest {
@@ -33,6 +34,23 @@ public class NamedQueriesTest {
         // then - verify the output
         System.out.println(product);
         Assertions.assertThat(product).isNotNull();
+
+    }
+
+    // JUnit test for find All Order By Name Desc
+    @Test
+    @DisplayName("JUnit test for find All Order By Name Desc")
+    public void given_whenFindAllOrderByNameDesc_thenReturnProductList() {
+
+        // given - precondition or setup
+
+        // when - action or the behavior that we are going test
+        List<Product> products = productRepository.findAllOrderByNameDesc();
+
+        // then - verify the output
+        products.forEach(System.out::println);
+        Assertions.assertThat(products).isNotNull();
+        Assertions.assertThat(products.size()).isEqualTo(3);
 
     }
 
