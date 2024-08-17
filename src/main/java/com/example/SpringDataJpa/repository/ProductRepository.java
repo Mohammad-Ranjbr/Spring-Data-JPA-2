@@ -49,6 +49,9 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query(value = "select * from products p where p.name = ?1 or p.description = ?2", nativeQuery = true)
     List<Product> findByNameOrDescriptionSQLIndexParam(String name, String description);
 
+    @Query(value = "select * from products p where p.name =:name or p.description =:description", nativeQuery = true)
+    List<Product> findByNameOrDescriptionSQLNamedParam(@Param("name") String name, @Param("description") String description);
+
     // save() :
     // This method is accessible through the CrudRepository interface. When you save an entity using the save() method,
     // Spring Data JPA uses the EntityManager behind the scenes to perform the save operation.

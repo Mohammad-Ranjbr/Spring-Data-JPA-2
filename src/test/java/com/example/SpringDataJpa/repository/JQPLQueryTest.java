@@ -76,4 +76,23 @@ public class JQPLQueryTest {
 
     }
 
+    // JUnit test for find By Name Or Description SQL Named Param
+    @Test
+    @DisplayName("JUnit test for find By Name Or Description SQL Named Param")
+    public void givenProductNameAndDescription_whenFindByNameOrDescriptionSQLNamedParam_thenReturnProductObject() {
+
+        // given - precondition or setup
+        String name = "product 1";
+        String description = "product 2 description";
+
+        // when - action or the behavior that we are going test
+        List<Product> products = productRepository.findByNameOrDescriptionSQLNamedParam(name,description);
+
+        // then - verify the output
+        System.out.println(products);
+        Assertions.assertThat(products).isNotNull();
+        Assertions.assertThat(products.size()).isEqualTo(2);
+
+    }
+
 }
