@@ -204,4 +204,22 @@ public class QueryMethodsTest {
 
     }
 
+    // JUnit test for find By Name In
+    @Test
+    @DisplayName("JUnit test for find By Name In")
+    public void givenNameList_whenFindByNameIn_thenReturnProductList() {
+
+        // given - precondition or setup
+        List<String> nameList = List.of("product 1","product 2","product 3");
+
+        // when - action or the behavior that we are going test
+        List<Product> products = productRepository.findByNameIn(nameList);
+
+        // then - verify the output
+        System.out.println(products);
+        Assertions.assertThat(products).isNotNull();
+        Assertions.assertThat(products.size()).isEqualTo(3);
+
+    }
+
 }
