@@ -80,7 +80,7 @@ public class NamedQueriesTest {
         // given - precondition or setup
 
         // when - action or the behavior that we are going test
-        List<Product> products = productRepository.findAllOrderByAsc();
+        List<Product> products = productRepository.findAllOrderByNameAsc();
 
         // then - verify the output
         products.forEach(System.out::println);

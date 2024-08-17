@@ -45,7 +45,7 @@ import java.time.LocalDateTime;
                         resultClass = Product.class
                 ),
                 @NamedNativeQuery(
-                        name = "Product.findAllOrderByAsc",
+                        name = "Product.findAllOrderByNameAsc",
                         query = "select * from products order by name asc",
                         resultClass = Product.class
                 )
