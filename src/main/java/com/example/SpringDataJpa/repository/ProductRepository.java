@@ -9,7 +9,7 @@ import java.util.List;
 
 // All the methods of this interface are implemented in SimpleJpaRepository and all of them are transactional.
 // There is no need to put this annotation for these methods. Also, there is no need
-// to put @Repository annotation because SimpleJpaRepository is marked with this annotation.
+// to put @Repository annotation because SimpleJpaRepository is marked with this annotation.git
 
 // all the methods belongs to JPA Repository Interface and all these
 // methods internally uses entity manager API (JPA) to perform different operations with that database.
@@ -24,6 +24,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findByPriceGreaterThan(BigDecimal price);
     List<Product> findByPriceLessThan(BigDecimal price);
     List<Product> findByNameContaining(String name);
+    List<Product> findByNameLike(String name);
 
     // save() :
     // This method is accessible through the CrudRepository interface. When you save an entity using the save() method,
