@@ -165,4 +165,23 @@ public class QueryMethodsTest {
 
     }
 
+    // JUnit test for find By Price Between
+    @Test
+    @DisplayName("JUnit test for find By Price Between")
+    public void givenPriceRange_whenFindByPriceBetween_thenReturnProductList() {
+
+        // given - precondition or setup
+        BigDecimal startPrice = new BigDecimal(100);
+        BigDecimal endPrice = new BigDecimal(120);
+
+        // when - action or the behavior that we are going test
+        List<Product> products = productRepository.findByPriceBetween(startPrice,endPrice); // between -> ? =< price =< ?
+
+        // then - verify the output
+        System.out.println(products);
+        Assertions.assertThat(products).isNotNull();
+        Assertions.assertThat(products.size()).isEqualTo(3);
+
+    }
+
 }

@@ -25,6 +25,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findByPriceLessThan(BigDecimal price);
     List<Product> findByNameContaining(String name);
     List<Product> findByNameLike(String name);
+    List<Product> findByPriceBetween(BigDecimal startPrice, BigDecimal endPrice);
 
     // save() :
     // This method is accessible through the CrudRepository interface. When you save an entity using the save() method,
