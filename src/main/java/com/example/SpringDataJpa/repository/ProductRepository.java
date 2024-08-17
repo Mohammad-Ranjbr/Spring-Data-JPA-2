@@ -3,6 +3,7 @@ package com.example.SpringDataJpa.repository;
 import com.example.SpringDataJpa.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
@@ -41,6 +42,9 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     @Query("select p from Product p where p.name = ?1 or p.description = ?2")
     List<Product> findByNameOrDescriptionJPQLIndexParam(String name, String description);
+
+    @Query("select p from Product p where p.name =:name or p.description =:description")
+    List<Product> findByNameOrDescriptionJPQLNamedParam(@Param("name") String name, @Param("description") String description);
 
     // save() :
     // This method is accessible through the CrudRepository interface. When you save an entity using the save() method,
