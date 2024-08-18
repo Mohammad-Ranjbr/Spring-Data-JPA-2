@@ -72,7 +72,7 @@ public class PaginationAndSortingTest {
     // JUnit test for sorting with multiple fields
     @Test
     @DisplayName("JUnit test for sorting with multiple fields")
-    public void givenSortByFieldsAndSortDir_whenFindAll_thenReturnProductPage() {
+    public void givenSortByFieldsAndSortDir_whenFindAll_thenReturnProductList() {
 
         // given - precondition or setup
         String sortPrice = "price";
@@ -88,6 +88,37 @@ public class PaginationAndSortingTest {
         // then - verify the output
         products.forEach(System.out::println);
         Assertions.assertThat(products).isNotNull();
+
+    }
+
+    // JUnit test for pagination and sorting together
+    @Test
+    @DisplayName("JUnit test for pagination and sorting together")
+    public void givenPageableAndSort_whenFindAll_thenReturnProductList() {
+
+        // given - precondition or setup
+        int pageNo = 0;
+        int pageSize = 5;
+        String sortDir = "desc";
+        String sortBy = "price";
+
+        Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
+        Pageable pageable = PageRequest.of(pageNo, pageSize, sort);
+
+        // when - action or the behavior that we are going test
+        Page<Product> productPage = productRepository.findAll(pageable);
+        List<Product> products = productPage.getContent();
+
+        // then - verify the output
+        products.forEach(System.out::println);
+        Assertions.assertThat(products).isNotNull();
+        System.out.println("Total Pages: " + productPage.getTotalPages());
+        System.out.println("Total Elements: " + productPage.getTotalElements());
+        System.out.println("Number Of Elements: " + productPage.getNumberOfElements());
+        System.out.println("Size: " + productPage.getSize());
+        System.out.println("Page Number: " + productPage.getNumber());
+        System.out.println("Last Page: " + productPage.isLast());
+        System.out.println("First Page: " + productPage.isFirst());
 
     }
 
