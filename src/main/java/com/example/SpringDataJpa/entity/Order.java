@@ -37,7 +37,7 @@ public class Order {
     // In a two-way relationship, each entity (source and target) has a relation field that refers to each other,
     // and the target entity table contains the foreign key. The resource entity must use the mappedBy attribute to define a two-way one-to-one mapping.
     // Source: Order , Target: Address
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "billing_address_id", referencedColumnName = "id")
     private Address billingAddress;
 
