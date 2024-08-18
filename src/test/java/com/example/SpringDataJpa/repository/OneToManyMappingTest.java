@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.math.BigDecimal;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 @SpringBootTest
@@ -68,6 +70,43 @@ public class OneToManyMappingTest {
 
         // then - verify the output
         Assertions.assertThat(savedOrder).isNotNull();
+
+    }
+
+    // JUnit test for get order
+    @Test
+    @DisplayName("JUnit test for get order")
+    public void givenOrderId_whenFindByID_thenGivenOrderObject() {
+
+        // given - precondition or setup
+        Long id = 3L;
+
+        // when - action or the behavior that we are going test
+        Order order = (orderRepository.findById(id).isPresent()) ? orderRepository.findById(id).get() : null;
+
+        // then - verify the output
+        System.out.println(order);
+        for(OrderItem item: Objects.requireNonNull(order).getOrderItems()){
+            System.out.println(item.getProduct().getName());
+        }
+        Assertions.assertThat(order).isNotNull();
+
+    }
+
+    // JUnit test for delete order (Remove Cascade Type)
+    @Test
+    @DisplayName("JUnit test for delete order (Remove Cascade Type)")
+    public void givenOrderId_whenDeleteOrder_thenDeletedOrderAndAddressAndOrderItem() {
+
+        // given - precondition or setup
+        Long id = 3L;
+
+        // when - action or the behavior that we are going test
+        orderRepository.deleteById(id);
+        Optional<Order> order = orderRepository.findById(id);
+
+        // then - verify the output
+        Assertions.assertThat(order).isEmpty();
 
     }
 
