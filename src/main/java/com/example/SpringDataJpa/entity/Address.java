@@ -6,7 +6,6 @@ import lombok.*;
 @Getter
 @Setter
 @Builder
-@ToString
 @Entity
 @Table(name = "addresses")
 @NoArgsConstructor
@@ -21,5 +20,21 @@ public class Address {
     private String state;
     private String country;
     private String zipCode;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "order_id", referencedColumnName = "id")
+    private Order order;
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "id=" + id +
+                ", street='" + street + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", country='" + country + '\'' +
+                ", zipCode='" + zipCode + '\'' +
+                '}';
+    }
 
 }

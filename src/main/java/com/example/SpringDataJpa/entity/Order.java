@@ -34,12 +34,14 @@ public class Order {
     // In a unidirectional relationship, the source entity has a relation field that refers to the target entity,
     // and the source entity's table contains the foreign key. In a unidirectional communication,
     // the source entity cannot be accessed in the target class because we did not create an object from the source class in the target class.
-    // In a two-way relationship, each entity (source and target) has a relation field that refers to each other,
-    // and the target entity table contains the foreign key. The resource entity must use the mappedBy attribute to define a two-way one-to-one mapping.
     // Source: Order , Target: Address
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "billing_address_id", referencedColumnName = "id")
-    private Address billingAddress;
+    // @OneToOne(cascade = CascadeType.ALL)
+    // @JoinColumn(name = "billing_address_id", referencedColumnName = "id")
+    // private Address billingAddress;
 
+    // In a bidirectional relationship, each entity (source and target) has a relation field that refers to each other,
+    // and the target entity table contains the foreign key. The resource entity must use the mappedBy attribute to define a bidirectional one-to-one mapping.
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "order")
+    private Address billingAddress;
 
 }

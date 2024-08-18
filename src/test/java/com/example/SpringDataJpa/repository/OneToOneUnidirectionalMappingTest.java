@@ -91,7 +91,7 @@ public class OneToOneUnidirectionalMappingTest {
 
     // JUnit test for get order
     @Test
-    @DisplayName("JUnit test for delete order (Remove Cascade Type)")
+    @DisplayName("JUnit test for get order")
     public void givenOrderId_whenFindByID_thenGivenOrderAndAddressObject() {
 
         // given - precondition or setup
