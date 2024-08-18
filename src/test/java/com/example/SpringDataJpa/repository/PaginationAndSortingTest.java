@@ -69,4 +69,26 @@ public class PaginationAndSortingTest {
 
     }
 
+    // JUnit test for sorting with multiple fields
+    @Test
+    @DisplayName("JUnit test for sorting with multiple fields")
+    public void givenSortByFieldsAndSortDir_whenFindAll_thenReturnProductPage() {
+
+        // given - precondition or setup
+        String sortPrice = "price";
+        String sortName = "name";
+        String sortDir = "desc";
+        Sort sortByName = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortName).ascending() : Sort.by(sortName).descending();
+        Sort sortByPrice = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortPrice).ascending() : Sort.by(sortPrice).descending();
+        Sort groupBySort = sortByName.and(sortByPrice);
+
+        // when - action or the behavior that we are going test
+        List<Product> products = productRepository.findAll(groupBySort);
+
+        // then - verify the output
+        products.forEach(System.out::println);
+        Assertions.assertThat(products).isNotNull();
+
+    }
+
 }
