@@ -24,6 +24,11 @@ public class OrderItem {
     @JoinColumn(name = "product_id", referencedColumnName = "id")
     private Product product;
 
+    // default fetch type for many to one is eager
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "order_id", referencedColumnName = "id")
+    private Order order;
+
     @Override
     public String toString() {
         return "OrderItem{" +

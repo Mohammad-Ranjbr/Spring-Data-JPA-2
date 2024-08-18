@@ -48,13 +48,16 @@ public class Order {
 
     // the unidirectional @OneToMany association is simpler it`s just the parent-side that defines
     // the relationship. in unidirectional mapping we use only @OneTOMany annotation.
-    //the bidirectional association requires the child entity mapping to provide a @ManyToOne annotation
-    // witch is responsible for controlling the association. in bidirectional mapping we use @OneToMany and @ManyToOne annotation.
     // unidirectional one to many
     // default fetch type for one to many is lazy
     // in unidirectional hibernate first save target entity then updates it to add foreign key but in bidirectional it is not like this
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "order_id", referencedColumnName = "id")
+    // @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    // @JoinColumn(name = "order_id", referencedColumnName = "id")
+    // private Set<OrderItem> orderItems = new HashSet<>();
+
+    // the bidirectional association requires the child entity mapping to provide a @ManyToOne annotation
+    // witch is responsible for controlling the association. in bidirectional mapping we use @OneToMany and @ManyToOne annotation.
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "order")
     private Set<OrderItem> orderItems = new HashSet<>();
 
     public BigDecimal getTotalPrice(){
