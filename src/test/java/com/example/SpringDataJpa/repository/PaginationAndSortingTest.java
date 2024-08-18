@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 
 import java.util.List;
 
@@ -22,9 +23,9 @@ public class PaginationAndSortingTest {
         this.productRepository = productRepository;
     }
 
-    // JUnit test for
+    // JUnit test for paging
     @Test
-    @DisplayName("")
+    @DisplayName("JUnit test for paging")
     public void givenPageNumberAndPageSize_whenFindAll_thenReturnProductPage() {
 
         // given - precondition or setup
@@ -46,6 +47,25 @@ public class PaginationAndSortingTest {
         System.out.println("Page Number: " + productPage.getNumber());
         System.out.println("Last Page: " + productPage.isLast());
         System.out.println("First Page: " + productPage.isFirst());
+
+    }
+
+    // JUnit test for sorting
+    @Test
+    @DisplayName("JUnit test for sorting")
+    public void givenSortByAndSortDir_whenFindAll_thenReturnProductPage() {
+
+        // given - precondition or setup
+        String sortBy = "price";
+        String sortDir = "desc";
+        Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
+
+        // when - action or the behavior that we are going test
+        List<Product> products = productRepository.findAll(sort);
+
+        // then - verify the output
+        products.forEach(System.out::println);
+        Assertions.assertThat(products).isNotNull();
 
     }
 
