@@ -24,7 +24,7 @@ public class Role {
     @ManyToMany(fetch = FetchType.EAGER, cascade = {
             CascadeType.PERSIST,
             CascadeType.MERGE
-    })
+    }, mappedBy = "roles")
     private Set<User> users = new HashSet<>();
 
 }
