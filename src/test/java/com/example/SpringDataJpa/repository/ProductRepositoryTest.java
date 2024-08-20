@@ -252,4 +252,22 @@ class ProductRepositoryTest {
 
     }
 
+    // JUnit test for search product
+    @Test
+    @DisplayName("JUnit test for search product")
+    public void givenSearchKeyword_whenSearchProduct_thenReturnProductList() {
+
+        // given - precondition or setup
+        String keyword = "Spring";
+
+        // when - action or the behavior that we are going test
+        List<Product> products = productRepository.searchProduct(keyword);
+
+        // then - verify the output
+        products.forEach(System.out::println);
+        Assertions.assertThat(products).isNotNull();
+        Assertions.assertThat(products.size()).isEqualTo(2);
+
+    }
+
 }

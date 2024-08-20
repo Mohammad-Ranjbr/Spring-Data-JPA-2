@@ -51,6 +51,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     @Query(value = "select * from products p where p.name =:name or p.description =:description", nativeQuery = true)
     List<Product> findByNameOrDescriptionSQLNamedParam(@Param("name") String name, @Param("description") String description);
+    @Query("select p from Product p where p.name like concat('%', :query, '%') or p.description like concat('%', :query, '%')")
+    List<Product> searchProduct(String query);
 
     Product findByPrice(@Param("price") BigDecimal price);
     List<Product> findAllOrderByNameDesc();
